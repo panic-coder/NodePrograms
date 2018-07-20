@@ -1,5 +1,6 @@
 var readline = require('readline');
 var prompt = require('prompt');
+var utility =  require('../utility/utility');
 
 exports.stringReplace = function (string, username) {
     return string.replace("<<UserName>>", username);
@@ -196,7 +197,82 @@ exports.chill = (t,v) => {
     return w;
 }
 
-exports.isAnagram = (data) => {
-    console.log(data);
-    
+exports.isAnagram = (data1,data2) => {
+    var word1 = spaceAndArrange(data1);
+    var word2 = spaceAndArrange(data2);
+    if (word1 == word2) {
+        return true;
+    } else {
+        return false;
+    }
 }
+
+spaceAndArrange = (data) => {
+    data = data.toString();
+    data = data.replace('','');
+    data = data.split('').sort().join('');
+    return data
+}
+
+exports.isPrime = (data) => {
+    var count = 0;
+    for(var i=2;i<data/2;i++){
+        if(data%i == 0){
+            count++;
+        }
+    }
+    if(count==0){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+exports.isPrimeAnagram = (dataArray) => {
+    var anagram = [];
+    var count = 0;
+    var data;
+    for(var i=0;i<dataArray.length;i++){
+        count = 0;
+        for (let j = i+1; j < dataArray.length-1; j++) {
+            var result = utility.isAnagram(dataArray[i], dataArray[j]);
+            if(result){
+                count++;
+                data = dataArray[j];
+            }
+        }
+        if (count>0) {
+            anagram.push(dataArray[i]);
+            anagram.push(data);
+        }
+    }
+    var anagramUnique = [];
+    for(var i=0;i<anagram.length;i++){
+        var index = anagramUnique.indexOf(anagram[i]);
+        if(index == -1){
+            anagramUnique.push(anagram[i]);
+        }
+        
+    }
+    anagramUnique.sort((a,b)=> {return (a-b)});
+    for (let i = 0; i < anagramUnique.length; i++)
+        console.log(anagramUnique[i]);
+}
+
+exports.binarySearch = (search,array) => {
+    var start = 0;
+		var end = array.length;
+		while (start < end) {
+			var midp = Math.floor((start + end) / 2);
+			if (array[midp] == (search)) {
+				return true;
+			} else if (array[midp] < search) {
+				start = midp+1;
+			} else {
+				end = midp;
+			}
+		}
+		return false;
+}
+    
+    
