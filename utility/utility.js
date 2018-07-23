@@ -1,6 +1,6 @@
 var readline = require('readline');
 var prompt = require('prompt');
-var utility =  require('../utility/utility');
+var utility = require('../utility/utility');
 
 exports.stringReplace = function (string, username) {
     return string.replace("<<UserName>>", username);
@@ -184,20 +184,20 @@ exports.permutator = (inputArr) => {
     return result;
 }
 
-exports.quad = (a,b,c) => {
-    var delta = (b*b) - (4*a*c);
-    var root1 = (-b + Math.sqrt(delta))/(2*a);
-    var root2 = (-b - Math.sqrt(delta))/(2*a);
+exports.quad = (a, b, c) => {
+    var delta = (b * b) - (4 * a * c);
+    var root1 = (-b + Math.sqrt(delta)) / (2 * a);
+    var root2 = (-b - Math.sqrt(delta)) / (2 * a);
     console.log('Root 1 =', root1);
     console.log('Root 2 =', root2);
 }
 
-exports.chill = (t,v) => {
-    var w = 35.74 + (0.6215*t) + ((0.4275*t)-(35.75))*Math.pow(v,0.16);
+exports.chill = (t, v) => {
+    var w = 35.74 + (0.6215 * t) + ((0.4275 * t) - (35.75)) * Math.pow(v, 0.16);
     return w;
 }
 
-exports.isAnagram = (data1,data2) => {
+exports.isAnagram = (data1, data2) => {
     var word1 = spaceAndArrange(data1);
     var word2 = spaceAndArrange(data2);
     if (word1 == word2) {
@@ -209,21 +209,21 @@ exports.isAnagram = (data1,data2) => {
 
 spaceAndArrange = (data) => {
     data = data.toString();
-    data = data.replace('','');
+    data = data.replace('', '');
     data = data.split('').sort().join('');
     return data
 }
 
 exports.isPrime = (data) => {
     var count = 0;
-    for(var i=2;i<data/2;i++){
-        if(data%i == 0){
+    for (var i = 2; i < data / 2; i++) {
+        if (data % i == 0) {
             count++;
         }
     }
-    if(count==0){
+    if (count == 0) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }
@@ -232,47 +232,117 @@ exports.isPrimeAnagram = (dataArray) => {
     var anagram = [];
     var count = 0;
     var data;
-    for(var i=0;i<dataArray.length;i++){
+    for (var i = 0; i < dataArray.length; i++) {
         count = 0;
-        for (let j = i+1; j < dataArray.length-1; j++) {
+        for (let j = i + 1; j < dataArray.length - 1; j++) {
             var result = utility.isAnagram(dataArray[i], dataArray[j]);
-            if(result){
+            if (result) {
                 count++;
                 data = dataArray[j];
             }
         }
-        if (count>0) {
+        if (count > 0) {
             anagram.push(dataArray[i]);
             anagram.push(data);
         }
     }
     var anagramUnique = [];
-    for(var i=0;i<anagram.length;i++){
+    for (var i = 0; i < anagram.length; i++) {
         var index = anagramUnique.indexOf(anagram[i]);
-        if(index == -1){
+        if (index == -1) {
             anagramUnique.push(anagram[i]);
         }
-        
+
     }
-    anagramUnique.sort((a,b)=> {return (a-b)});
+    anagramUnique.sort((a, b) => {
+        return (a - b)
+    });
     for (let i = 0; i < anagramUnique.length; i++)
         console.log(anagramUnique[i]);
 }
 
-exports.binarySearch = (search,array) => {
+exports.binarySearch = (search, array) => {
     var start = 0;
-		var end = array.length;
-		while (start < end) {
-			var midp = Math.floor((start + end) / 2);
-			if (array[midp] == (search)) {
-				return true;
-			} else if (array[midp] < search) {
-				start = midp+1;
-			} else {
-				end = midp;
-			}
-		}
-		return false;
+    var end = array.length;
+    while (start < end) {
+        var midp = Math.floor((start + end) / 2);
+        if (array[midp] == (search)) {
+            return true;
+        } else if (array[midp] < search) {
+            start = midp + 1;
+        } else {
+            end = midp;
+        }
+    }
+    return false;
 }
+
+exports.insertion = (array) => {
+    for (var i = 1; i < array.length; i++) {
+        var ne = array[i];
+        var j;
+        for (j = i; j > 0 && (array[j - 1] > (ne)); j--) {
+            array[j] = array[j - 1];
+        }
+        array[j] = ne;
+    }
+    return array;
+}
+
+exports.bubble = (array) => {
+    for (var i = 0; i < array.length; i++) {
+        for (var j = 0; j < array.length - 1; j++) {
+            if (array[j] > array[j + 1]) {
+                var temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
+            }
+        }
+    }
+    return array;
+}
+
+exports.vendingmachine = (amount) => {
+
+    var notes = [1000, 500, 100, 50, 20, 10, 5, 2, 1];
+    var notesCount = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    for (var i = 0; i < notes.length; i++) {
+        if (amount < 0)
+            return;
+        else if (amount >= notes[i]) {
+            notesCount[i] = Math.floor(amount / notes[i]);
+            amount = amount % notes[i];
+        }
+    }
+    for (var i = 0; i < notes.length; i++) {
+        console.log(`${notes[i]}     notes :   ${notesCount[i]}`);
+    }
+}
+
+exports.day = (month, day, year) => {
+    var calculationMonth, calculationDay, calculationYear;
+    calculationYear = (Number(year) - Number(Math.floor((14 - month) / 12)));
+    var x = (Number(calculationYear) + Number(Math.floor(calculationYear / 4)) - Number(Math.floor(calculationYear / 100)) + Number(Math.floor(calculationYear / 400)));
+    calculationMonth = (Number(month) + Number((12 * Math.floor((14 - month) / 12)) - 2));
+    calculationDay = ((Number(day) + Number(x) + Number(Math.floor((31 * calculationMonth) / 12))) % 7);
+    return calculationDay;
+}
+
+exports.toFahrenheit = (C) => {
+    return (Number(C * 9/5) + Number(32));
+}
+
+exports.toCelsius = (F) => {
+    return (Number(F - 32) * Number(5/9));
+}
+
+exports.payment = (P,Y,R) => {
+    var n = 12*Y;
+    console.log(n);
     
+    var r = R/(12*100); 
+    console.log(r);
     
+    var payment = (P*r)/(Number(1)-(Number((Math.pow((1+r),-n)))));
+    return payment;
+}

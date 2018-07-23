@@ -18,6 +18,8 @@ flip=(size) => {
     var tails=0;
     for(var i=0; i<size; i++){
         randomValues[i] = utility.random();
+        console.log(randomValues[i]);
+        
         if(randomValues[i]<0.5){
             tails++;
         } else{
