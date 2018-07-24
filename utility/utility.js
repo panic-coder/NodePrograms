@@ -329,20 +329,79 @@ exports.day = (month, day, year) => {
 }
 
 exports.toFahrenheit = (C) => {
-    return (Number(C * 9/5) + Number(32));
+    return (Number(C * 9 / 5) + Number(32));
 }
 
 exports.toCelsius = (F) => {
-    return (Number(F - 32) * Number(5/9));
+    return (Number(F - 32) * Number(5 / 9));
 }
 
-exports.payment = (P,Y,R) => {
-    var n = 12*Y;
+exports.payment = (P, Y, R) => {
+    var n = 12 * Y;
     console.log(n);
-    
-    var r = R/(12*100); 
+
+    var r = R / (12 * 100);
     console.log(r);
-    
-    var payment = (P*r)/(Number(1)-(Number((Math.pow((1+r),-n)))));
+
+    var payment = (P * r) / (Number(1) - (Number((Math.pow((1 + r), -n)))));
     return payment;
+}
+
+exports.sqrtOfNumber = (c) => {
+    var t = 0;
+    t = c;
+    var epsilon = 1e-15;
+    do {
+        t = (Number(c / t) + Number(t)) / 2;
+    } while ((Math.abs(Number(t) - Number(c / t))) > (epsilon * t));
+    console.log(t);
+}
+
+exports.toBinary = (num) => {
+    var bin = 0;
+    var binNumber = '';
+    while (num > 0) {
+        bin = num % 2;
+        //num >>= 1; 
+        num = Math.floor(num / 2);
+        //console.log(bin);
+        binNumber = binNumber + bin;
+    }
+    //console.log(binNumber);
+    binNumber = reverseString(binNumber);
+    //console.log(binNumber);
+    return binNumber;
+}
+
+function reverseString(str) {
+    return str.split('').reverse().join('');
+}
+
+exports.swapNibbles = (binaryInput) => {
+    var c = Array.from(binaryInput);
+    console.log(c);
+
+    var swapedNibbles = "";
+    if (c.length < 8) {
+        var count = 8 - c.length;
+        while (count > 0) {
+            swapedNibbles += "0";
+            count--;
+        }
+    }
+    for (var i = 0; i < c.length; i++) {
+        swapedNibbles += c[i];
+    }
+    c = Array.from(swapedNibbles);
+    swapedNibbles = "";
+    console.log(swapedNibbles);
+    for (var i = Math.floor(c.length / 2); i < c.length; i++) {
+
+        swapedNibbles = swapedNibbles + c[i];
+    }
+    for (var i = 0; i < Math.floor(c.length / 2); i++) {
+        swapedNibbles = swapedNibbles + c[i];
+    }
+    return swapedNibbles;
+
 }
