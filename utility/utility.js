@@ -1,6 +1,7 @@
 var readline = require('readline');
 var prompt = require('prompt');
 var utility = require('../utility/utility');
+var log = require('single-line-log').stdout;
 
 exports.stringReplace = function (string, username) {
     return string.replace("<<UserName>>", username);
@@ -403,5 +404,146 @@ exports.swapNibbles = (binaryInput) => {
         swapedNibbles = swapedNibbles + c[i];
     }
     return swapedNibbles;
+}
 
+exports.dequePalindrome = (word) => {
+    var dq = require('../data_structure/deque');
+    var c = Array.from(word);
+    for (var i = 0; i < c.length; i++) {
+        dq.addFront(c[i]);
+    }
+
+    var s = "";
+    for (var i = 0; i < c.length; i++) {
+        var ch = dq.removeFront();
+        s = s + ch.data;
+    }
+    console.log(s);
+    if (s == word)
+        return true;
+    else
+        return false;
+}
+
+exports.binarySearchTree = (totalNodes) => {
+    var numerator = factorial(2 * totalNodes);
+    var denominator = (factorial(Number(totalNodes) + Number(1))) * (factorial(totalNodes));
+    var differentTrees = (numerator / denominator);
+    return differentTrees;
+}
+
+factorial = (i) => {
+    var fact = 1;
+    while (i > 0) {
+        fact = fact * i;
+        i--;
+    }
+    return fact;
+}
+
+exports.calender = (month, year) => {
+
+    var year1, month1, x, day = 1,
+        day1;
+    year1 = (Number(year) - Number(Math.floor((14 - month) / 12)));
+    x = Number(year1) + Number(Math.floor(year1 / 4)) - Number(Math.floor(year1 / 100)) + Number(Math.floor(year1 / 400));
+    month1 = (Number(month) + Number((12 * Math.floor((14 - month) / 12)) - 2));
+    day1 = ((Number(day) + Number(x) + Number(Math.floor((31 * month1) / 12))) % 7);
+    var monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+        "October", "November", "December"
+    ];
+    var monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    var monthDay = 0;
+    for (var i = 0; i < monthDays.length; i++) {
+        if (i == Number(month) - 1) {
+            monthDay = monthDays[i];
+        }
+    }
+    var totalDays = [];
+    var leap = leapYear(year);
+    if (leap && month == 1) {
+        monthDay = 29;
+    }
+    var z = 1;
+    for (var i = 0; i < 6; i++) {
+        for (var j = 0; j < 7; j++) {
+            if (i == 0 && j < day1) {
+                totalDays.push(' ');
+            } else if (z <= monthDay) {
+                totalDays.push(z);
+                z++;
+            } else {
+                totalDays.push(' ');
+            }
+        }
+    }
+    console.log();
+    for (var i = 0; i < 12; i++) {
+        if (month == Number(i) + 1) {
+            console.log(monthName[i] + " " + year);
+
+        }
+    }
+    var dayName = ["S", "M", "T", "W", "T", "F", "S"];
+    var j = 0;
+    var k = 1;
+    var monthArray = [];
+    var value = '';
+    for (var i = 0; i < 7; i++) {
+        value = value + dayName[i] + '  ';
+    }
+    monthArray.push(value);
+    value = '';
+
+    for (var i = 0; i < 7; i++) {
+        value = value + totalDays[i] + '  ';
+    }
+    monthArray.push(value);
+    value = '';
+    for (var i = 7; i < 14; i++) {
+        if (totalDays[i] < 10) {
+            value = value + totalDays[i] + '  ';
+        } else {
+            value = value + totalDays[i] + ' ';
+        }
+    }
+    monthArray.push(value);
+    value = '';
+    for (var i = 14; i < 21; i++) {
+        if (totalDays[i] < 10) {
+            value = value + totalDays[i] + '  ';
+        } else {
+            value = value + totalDays[i] + ' ';
+        }
+    }
+    monthArray.push(value);
+    value = '';
+    for (var i = 21; i < 28; i++) {
+        value = value + totalDays[i] + ' ';
+    }
+    monthArray.push(value);
+    value = '';
+    for (var i = 28; i < 35; i++) {
+        value = value + totalDays[i] + ' ';
+    }
+    monthArray.push(value);
+    value = '';
+    for (var i = 35; i < 42; i++) {
+        value = value + totalDays[i] + ' ';
+    }
+    monthArray.push(value);
+    value = '';
+    for (var i = 0; i < monthArray.length; i++) {
+        console.log(monthArray[i]);
+    }
+}
+
+leapYear = (year) => {
+    if (year % 100 != 0 && year % 4 == 0) {
+        return true;
+    } else if (year % 100 == 0 && year % 400 == 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
