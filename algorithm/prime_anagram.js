@@ -9,4 +9,7 @@ for(var i=2;i<=1000;i++){
 // for(var i=0;i<primeArray.length;i++){
 //     console.log(primeArray[i]);
 // }
-utility.isPrimeAnagram(primeArray);
+var output = utility.isPrimeAnagram(primeArray);
+for(var i=0;i<output.length;i++){
+    console.log(output[i]);
+}

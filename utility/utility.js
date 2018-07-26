@@ -1,6 +1,9 @@
 var readline = require('readline');
 var prompt = require('prompt');
 var utility = require('../utility/utility');
+var queue = require('../data_structure/queue_linkedlist');
+var stack = require('../data_structure/stack_linkedlist');
+var stackCalender = require('../data_structure/stack_linkedlist_calendar');
 
 exports.stringReplace = function (string, username) {
     return string.replace("<<UserName>>", username);
@@ -112,54 +115,38 @@ exports.coupon = (totalCoupons) => {
                 count = 0;
             }
         }
-        //console.log(unique[i]);
     }
     return unique;
 }
 
 exports.array = (m, n) => {
-    //var arr = new Array(m);
     var arr = [
         [1, 2],
         [3, 4]
     ];
-    /*  
-      for(var i=0;i<m;i++){
-          
-          arr[i] = new Array(n);
-          for(var j=0;j<n;j++){
-              var utility = require('./utility')
-              var input = utility.userInput();
-              input.question('value ',(a) => {
-                  console.log(a);
-                  arr[i].push(a);
-                  input.close();
-              });
-          }
-      } */
-    //var http = require('http');
+
     for (var i = 0; i < m; i++) {
         for (var j = 0; j < n; j++) {
             console.log(arr[i][j]);
         }
-        // console.log(arr[i][j]);
     }
 }
 
-exports.sumOfThreeintegers = (size) => {
-    prompt.start();
-    var arr = [];
-
-    for (var i = 0; i < size; i++) {
-        prompt.get(['values'], function (err, input) {
-            if (err) {
-                return 0;
+exports.triplets = (array) => {
+    var count = 0;
+    for (var k = 0; k < array.length; k++) {
+        for (var j = k + 1; j < array.length; j++) {
+            for (var i = j + 1; i < array.length; i++) {
+                if (Number(array[k]) + Number(array[j]) + Number(array[i]) == 0) {
+                    count++;
+                    console.log(array[k] + " " + array[j] + " " + array[i]);
+                }
             }
-            arr.push(input.values);
-        })
+        }
     }
-    console.log(arr);
+    return count;
 }
+
 
 exports.distance = (x, y) => {
     return Math.sqrt(x * x + y * y);
@@ -257,8 +244,9 @@ exports.isPrimeAnagram = (dataArray) => {
     anagramUnique.sort((a, b) => {
         return (a - b)
     });
-    for (let i = 0; i < anagramUnique.length; i++)
-        console.log(anagramUnique[i]);
+    // for (let i = 0; i < anagramUnique.length; i++)
+    //     console.log(anagramUnique[i]);
+    return anagramUnique;
 }
 
 exports.binarySearch = (search, array) => {
@@ -403,5 +391,417 @@ exports.swapNibbles = (binaryInput) => {
         swapedNibbles = swapedNibbles + c[i];
     }
     return swapedNibbles;
+}
 
+exports.dequePalindrome = (word) => {
+    var dq = require('../data_structure/deque');
+    var c = Array.from(word);
+    for (var i = 0; i < c.length; i++) {
+        dq.addFront(c[i]);
+    }
+
+    var s = "";
+    for (var i = 0; i < c.length; i++) {
+        var ch = dq.removeFront();
+        s = s + ch.data;
+    }
+    console.log(s);
+    if (s == word)
+        return true;
+    else
+        return false;
+}
+
+exports.binarySearchTree = (totalNodes) => {
+    var numerator = factorial(2 * totalNodes);
+    var denominator = (factorial(Number(totalNodes) + Number(1))) * (factorial(totalNodes));
+    var differentTrees = (numerator / denominator);
+    return differentTrees;
+}
+
+factorial = (i) => {
+    var fact = 1;
+    while (i > 0) {
+        fact = fact * i;
+        i--;
+    }
+    return fact;
+}
+
+exports.calender = (month, year) => {
+
+    var year1, month1, x, day = 1,
+        day1;
+    year1 = (Number(year) - Number(Math.floor((14 - month) / 12)));
+    x = Number(year1) + Number(Math.floor(year1 / 4)) - Number(Math.floor(year1 / 100)) + Number(Math.floor(year1 / 400));
+    month1 = (Number(month) + Number((12 * Math.floor((14 - month) / 12)) - 2));
+    day1 = ((Number(day) + Number(x) + Number(Math.floor((31 * month1) / 12))) % 7);
+    var monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+        "October", "November", "December"
+    ];
+    var monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    var monthDay = 0;
+    for (var i = 0; i < monthDays.length; i++) {
+        if (i == Number(month) - 1) {
+            monthDay = monthDays[i];
+        }
+    }
+    var totalDays = [];
+    var leap = leapYear(year);
+    if (leap && month == 1) {
+        monthDay = 29;
+    }
+    var z = 1;
+    for (var i = 0; i < 6; i++) {
+        for (var j = 0; j < 7; j++) {
+            if (i == 0 && j < day1) {
+                totalDays.push(' ');
+            } else if (z <= monthDay) {
+                totalDays.push(z);
+                z++;
+            } else {
+                totalDays.push(' ');
+            }
+        }
+    }
+    console.log();
+    for (var i = 0; i < 12; i++) {
+        if (month == Number(i) + 1) {
+            console.log(monthName[i] + " " + year);
+
+        }
+    }
+    var dayName = ["S", "M", "T", "W", "T", "F", "S"];
+    var j = 0;
+    var k = 1;
+    var monthArray = [];
+    var value = '';
+    for (var i = 0; i < 7; i++) {
+        value = value + dayName[i] + '  ';
+    }
+    monthArray.push(value);
+    value = '';
+
+    for (var i = 0; i < 7; i++) {
+        value = value + totalDays[i] + '  ';
+    }
+    monthArray.push(value);
+    value = '';
+    for (var i = 7; i < 14; i++) {
+        if (totalDays[i] < 10) {
+            value = value + totalDays[i] + '  ';
+        } else {
+            value = value + totalDays[i] + ' ';
+        }
+    }
+    monthArray.push(value);
+    value = '';
+    for (var i = 14; i < 21; i++) {
+        if (totalDays[i] < 10) {
+            value = value + totalDays[i] + '  ';
+        } else {
+            value = value + totalDays[i] + ' ';
+        }
+    }
+    monthArray.push(value);
+    value = '';
+    for (var i = 21; i < 28; i++) {
+        value = value + totalDays[i] + ' ';
+    }
+    monthArray.push(value);
+    value = '';
+    for (var i = 28; i < 35; i++) {
+        value = value + totalDays[i] + ' ';
+    }
+    monthArray.push(value);
+    value = '';
+    for (var i = 35; i < 42; i++) {
+        value = value + totalDays[i] + ' ';
+    }
+    monthArray.push(value);
+    value = '';
+    for (var i = 0; i < monthArray.length; i++) {
+        console.log(monthArray[i]);
+    }
+}
+
+leapYear = (year) => {
+    if (year % 100 != 0 && year % 4 == 0) {
+        return true;
+    } else if (year % 100 == 0 && year % 400 == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+exports.calenderQueue = (month, year) => {
+    var year1, month1, x, day = 1,
+        day1;
+    year1 = (Number(year) - Number(Math.floor((14 - month) / 12)));
+    x = Number(year1) + Number(Math.floor(year1 / 4)) - Number(Math.floor(year1 / 100)) + Number(Math.floor(year1 / 400));
+    month1 = (Number(month) + Number((12 * Math.floor((14 - month) / 12)) - 2));
+    day1 = ((Number(day) + Number(x) + Number(Math.floor((31 * month1) / 12))) % 7);
+    var monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+        "October", "November", "December"
+    ];
+    var monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    var monthDay = 0;
+    for (var i = 0; i < monthDays.length; i++) {
+        if (i == Number(month) - 1) {
+            monthDay = monthDays[i];
+        }
+    }
+    var totalDays = [];
+    var leap = leapYear(year);
+    if (leap && month == 1) {
+        monthDay = 29;
+    }
+    var z = 1;
+    for (var i = 0; i < 6; i++) {
+        for (var j = 0; j < 7; j++) {
+            if (i == 0 && j < day1) {
+                totalDays.push(' ');
+            } else if (z <= monthDay) {
+                totalDays.push(z);
+                z++;
+            } else {
+                totalDays.push(' ');
+            }
+        }
+    }
+    console.log();
+    for (var i = 0; i < 12; i++) {
+        if (month == Number(i) + 1) {
+            console.log(monthName[i] + " " + year);
+
+        }
+    }
+    var dayName = ["S", "M", "T", "W", "T", "F", "S"];
+    var j = 0;
+    var k = 1;
+    var monthArray = [];
+    var value = '';
+    for (var i = 0; i < 7; i++) {
+        value = value + dayName[i] + '  ';
+    }
+    queue.push(value);
+    value = '';
+
+    for (var i = 0; i < 7; i++) {
+        value = value + totalDays[i] + '  ';
+    }
+    queue.push(value);
+    value = '';
+    for (var i = 7; i < 14; i++) {
+        if (totalDays[i] < 10) {
+            value = value + totalDays[i] + '  ';
+        } else {
+            value = value + totalDays[i] + ' ';
+        }
+    }
+    queue.push(value);
+    value = '';
+    for (var i = 14; i < 21; i++) {
+        if (totalDays[i] < 10) {
+            value = value + totalDays[i] + '  ';
+        } else {
+            value = value + totalDays[i] + ' ';
+        }
+    }
+    queue.push(value);
+    value = '';
+    for (var i = 21; i < 28; i++) {
+        value = value + totalDays[i] + ' ';
+    }
+    queue.push(value);
+    value = '';
+    for (var i = 28; i < 35; i++) {
+        value = value + totalDays[i] + ' ';
+    }
+    queue.push(value);
+    value = '';
+    for (var i = 35; i < 42; i++) {
+        value = value + totalDays[i] + ' ';
+    }
+    queue.push(value);
+    value = '';
+    queue.display();
+}
+
+exports.calenderStack = (month, year) => {
+    var year1, month1, x, day = 1,
+        day1;
+    year1 = (Number(year) - Number(Math.floor((14 - month) / 12)));
+    x = Number(year1) + Number(Math.floor(year1 / 4)) - Number(Math.floor(year1 / 100)) + Number(Math.floor(year1 / 400));
+    month1 = (Number(month) + Number((12 * Math.floor((14 - month) / 12)) - 2));
+    day1 = ((Number(day) + Number(x) + Number(Math.floor((31 * month1) / 12))) % 7);
+    var monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+        "October", "November", "December"
+    ];
+    var monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    var monthDay = 0;
+    for (var i = 0; i < monthDays.length; i++) {
+        if (i == Number(month) - 1) {
+            monthDay = monthDays[i];
+        }
+    }
+    var totalDays = [];
+    var leap = leapYear(year);
+    if (leap && month == 1) {
+        monthDay = 29;
+    }
+    var z = 1;
+    for (var i = 0; i < 6; i++) {
+        for (var j = 0; j < 7; j++) {
+            if (i == 0 && j < day1) {
+                totalDays.push(' ');
+            } else if (z <= monthDay) {
+                totalDays.push(z);
+                z++;
+            } else {
+                totalDays.push(' ');
+            }
+        }
+    }
+    for (let i = 0; i < totalDays.length; i++) {
+        stack.push(totalDays[i]);
+    }
+    while (!stack.isEmpty()) {
+        stackCalender.push(stack.pop());
+    }
+    totalDays = [];
+    while (!stackCalender.isEmpty()) {
+        totalDays.push(stackCalender.pop());
+    }
+    console.log();
+
+    for (var i = 0; i < 12; i++) {
+        if (month == Number(i) + 1) {
+            console.log(monthName[i] + " " + year);
+        }
+    }
+
+    var dayName = ["S", "M", "T", "W", "T", "F", "S"];
+    var monthArray = [];
+    var value = '';
+    for (var i = 0; i < 7; i++) {
+        value = value + dayName[i] + '  ';
+    }
+    monthArray.push(value);
+    value = '';
+
+    for (var i = 0; i < 7; i++) {
+        value = value + totalDays[i] + '  ';
+    }
+    monthArray.push(value);
+    value = '';
+    for (var i = 7; i < 14; i++) {
+        if (totalDays[i] < 10) {
+            value = value + totalDays[i] + '  ';
+        } else {
+            value = value + totalDays[i] + ' ';
+        }
+    }
+    monthArray.push(value);
+    value = '';
+    for (var i = 14; i < 21; i++) {
+        if (totalDays[i] < 10) {
+            value = value + totalDays[i] + '  ';
+        } else {
+            value = value + totalDays[i] + ' ';
+        }
+    }
+    monthArray.push(value);
+    value = '';
+    for (var i = 21; i < 28; i++) {
+        value = value + totalDays[i] + ' ';
+    }
+    monthArray.push(value);
+    value = '';
+    for (var i = 28; i < 35; i++) {
+        value = value + totalDays[i] + ' ';
+    }
+    monthArray.push(value);
+    value = '';
+    for (var i = 35; i < 42; i++) {
+        value = value + totalDays[i] + ' ';
+    }
+    monthArray.push(value);
+    value = '';
+    for (var i = 0; i < monthArray.length; i++) {
+        console.log(monthArray[i]);
+    }
+}
+
+exports.prime2d = (range) => {
+    var primeArray = [];
+    var pa = [];
+    var str = '';
+    for (var i = 2; i < range; i++) {
+        if (utility.isPrime(i)) {
+            primeArray.push(i);
+            str = str + i + ' ';
+        }
+        if (i % 100 == 0) {
+            pa.push(str);
+            str = '';
+        }
+    }
+    for (var i = 0; i < pa.length; i++) {
+        console.log(pa[i]);
+    }
+}
+
+exports.primeAnagram2d = (range) => {
+    var primeArray = [];
+    var anagram2d = [];
+    var str = '';
+    var hundred = 100;
+    for (var i = 2; i < range; i++) {
+        if (utility.isPrime(i)) {
+            primeArray.push(i);
+        }
+    }
+    var anagramUnique = utility.isPrimeAnagram(primeArray);
+    for (var i = 0; i <= anagramUnique.length; i++) {
+        if (Number(anagramUnique[i]) < Number(hundred)) {
+            str = str + anagramUnique[i] + ' ';
+        } else {
+            anagram2d.push(str);
+            str = '';
+            hundred = (hundred) + Number(100);
+        }
+    }
+    for (var j = 0; j < anagram2d.length; j++) {
+        console.log(anagram2d[j]);
+    }
+}
+
+exports.primeAnagram2dStack = (range) => {
+    var primeArray = [];
+    for (var i = 2; i < range; i++) {
+        if (utility.isPrime(i)) {
+            primeArray.push(i);
+        }
+    }
+    var anagramUnique = utility.isPrimeAnagram(primeArray);
+    for (var i = 0; i < anagramUnique.length; i++) {
+        stack.push(anagramUnique[i]);
+    }
+    stack.display();
+}
+
+exports.primeAnagram2dQueue = (range) => {
+    var primeArray = [];
+    for (var i = 2; i < range; i++) {
+        if (utility.isPrime(i)) {
+            primeArray.push(i);
+        }
+    }
+    var anagramUnique = utility.isPrimeAnagram(primeArray);
+    for (var i = 0; i < anagramUnique.length; i++) {
+        queue.push(anagramUnique[i]);
+    }
+    queue.display();
 }
