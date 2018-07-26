@@ -70,7 +70,6 @@ exports.display = () => {
             console.log(t.data + " ");
             t = t.next;
         }
-        //System.out.println();
     }
 }
 

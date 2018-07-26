@@ -805,3 +805,139 @@ exports.primeAnagram2dQueue = (range) => {
     }
     queue.display();
 }
+
+exports.regex = (firstName,lastName,phoneNumber,string) => {
+    var string = string.replace('<<name>>',firstName);
+    var string = string.replace('<<full name>>',firstName+' '+lastName);
+    var string = string.replace('xxxxxxxxxx',phoneNumber);
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;
+    var yyyy = today.getFullYear();
+    today = dd+'/'+mm+'/'+yyyy;
+    var string = string.replace('01/01/2016',today);
+    console.log(string);
+}
+
+exports.shuffle = () => {
+    var size = 9;
+    var cards = [];
+    
+    cards = utility.randomArray(size);
+    return cards;
+}
+
+/**
+ * @param size is the number of cards each player receives
+ * @return the 2D array of 4x9 with random cards for 4 players
+ */
+exports.randomArray = (size) => {
+    var r=0;
+    var c=0;
+    var random = 0;
+    var x = 0;
+    var bound = 52;
+    var array = [];
+   
+    array = cardsDistribution(52);
+    // console.log(array);
+    // console.log(array.length);
+    return array;
+    }
+
+    cardsDistribution = (totalCoupons) => {
+        var unique = [9*4];
+        var number;
+        for (var i = 0; i < 9*4; i++) {
+            random = (Math.floor(Math.random() * totalCoupons)) + 1;
+            if (i == 0) {
+                unique[i] = random;
+            } else {
+                var loop = 0;
+                var count = 0;
+                while (loop == 0) {
+                    random = (Math.floor(Math.random() * totalCoupons)) + 1;
+                    for (var j = 0; j < unique.length; j++) {
+                        if (unique[j] == random ) {
+                            count++;
+                        }
+                    }
+    
+                    if (count == 0) {
+                        unique[i] = random;
+                        loop = 1;
+                    }
+                    count = 0;
+                }
+            }
+        }
+        return unique;
+    }
+    
+    inputRandom = (bound) => {
+        var a = Math.floor(Math.random()*bound)+1
+        console.log(a);
+        return a;
+        
+    }
+
+
+/**
+ * @param deck is the array where all the player cards are stored in random order
+ * @return the cards of each player in ascending order 
+ */
+exports.sort = (deck) => {
+    var size = 9;
+    var player1 = new int[size];
+    var player2 = new int[size];
+    var player3 = new int[size];
+    var player4 = new int[size];
+    for(var i=0;i<4;i++) {
+        for(var j=0;j<size;j++) {
+            if(i==0)
+                player1[j] = deck[i][j];
+            else if(i==1)
+                player2[j] = deck[i][j];
+            else if(i==2)
+                player3[j] = deck[i][j];
+            else if(i==3)
+                player4[j] = deck[i][j];
+        }
+    }
+    player1 = bubbleSort(player1);
+    player2 = bubbleSort(player2);
+    player3 = bubbleSort(player3);
+    player4 = bubbleSort(player4);
+    var array = new int[4][size];
+    for(var i = 0;i<4;i++) {
+        for(var j=0;j<size;j++) {
+            if(i==0) 
+                array[i][j] = player1[j];
+            else if(i==1)
+                array[i][j] = player2[j];
+            else if(i==2)
+                array[i][j] = player3[j];
+            else if(i==3)
+                array[i][j] = player4[j];
+        }
+    }
+
+    return array;
+}
+
+/**
+ * @param array
+ * @return sorted array
+ */
+exports.bubbleSort = (array) => {
+    for(var i=0;i<array.length;i++) {
+        for(var j=0;j<array.length-1;j++) {
+            if((array[j]%13)>(array[(j+1)])%13) {
+                var temp = array[j];
+                array[j] = array[j+1];
+                array[j+1] = temp;
+            }
+        }
+    }
+    return array;
+}
