@@ -8,7 +8,7 @@ var head;
 module.exports = class HashChaining {
     constructor(tableSize){
         console.log('construt');
-        table = new Node[tableSize];
+        table = new Node(tableSize);
         size = 0;    
     }
 }

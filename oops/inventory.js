@@ -3,6 +3,8 @@ var obj = JSON.parse(fs.readFileSync('./json/inventory.json', 'utf8'));
 for(var i=0;i<obj.length;i++){
     console.log(obj[i].price);
 }
+//console.log(Array.isArray(obj));
+ 
 var totalPrice = 0;
 var totalWeight = 0;
 
