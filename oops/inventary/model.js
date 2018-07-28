@@ -11,7 +11,7 @@ module.exports = class Inventary {
     setInventaryName(name) {
         this.name = name
     }
-    getInventarytPrice() {
+    getInventaryPrice() {
         return this.price;
     }
     setInventaryPrice(price) {

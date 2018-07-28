@@ -1,8 +1,22 @@
+var fs = require('fs');
 var Inventary = require('./model.js');
 var data = new Inventary();
 var utility = require('/home/bridgelabz/Shubham/NodePrograms/utility/utility.js');
 var input = utility.userInput();
-var array = [];
+
+var array=[];
+var obj = JSON.parse(fs.readFileSync('./inventory_output.json', 'utf8'));
+obj.forEach(elements => {
+    data = new Inventary()
+    data.setInventaryName(elements.name);
+    data.setInventaryPrice(elements.price);
+    data.setInventaryWeight(elements.weight);
+    console.log(data);
+    
+    array.push(data);
+    
+});
+console.log(array);
 
 menu = () => {
     input.question('1. Insert new products\n2. Edit existing products\n3. Delete \n4. Save \n5. Exit ', (choice) => {
@@ -22,9 +36,53 @@ menu = () => {
         } else if (choice == '2') {
             array.forEach(element => {
                 element.toString();
+                //console.log(element);
+                
             });
             input.question('Enter the name of article to edit ', (editName) => {
-                console.log(editName);
+                var count = 0;
+                array.forEach(element => {
+                    if(element.name == editName){
+                        count++;
+                    }
+                });
+                if (count > 0) {
+                    input.question('1. Price\n2. Weight\n3. Exit ', (attribute) => {
+                        if (attribute == '1') {
+                            input.question('Enter the new price ',(newPrice) => {
+                                array.forEach(element => {
+                                    if (element.name == editName) {
+                                        element.getInventaryPrice();
+                                        element.setInventaryPrice(newPrice);
+                                        console.log('Success');
+                                        menu();
+                                    }
+                                })
+                            });
+                            
+                        } else if (attribute == '2') {
+                            input.question('Enter the new weight ',(newWeight) => {
+                                array.forEach(element => {
+                                    if (element.name == editName) {
+                                        element.setInventaryWeight(newWeight);
+                                        console.log('Success');
+                                        menu();
+                                    }
+                            })
+                            });
+                        } else if (attribute == '3') {
+                            console.log('Closing');
+                            menu();
+                        } else {
+                            console.log("Data entered doesn't exists");
+                            menu();
+                        }
+                    })
+                    
+                } else {
+                    console.log("\nData entered doesn't exists\n");
+                    menu();
+                }
                 menu();
             })
         } else if (choice == '3') {
@@ -32,23 +90,25 @@ menu = () => {
                 element.toString();
             });
             input.question('Enter the name of article to delete ', (deleteName) => {
-                console.log(deleteName);
+                for(var i=0;i<array.length;i++){
+                    if(array[i].name == deleteName){
+                        array.splice(i,1);
+                    }
+                }
+                console.log(array);
                 menu();
             })
         } else if (choice == '4') {
             console.log('save');
-            var json = JSON.stringify({
-                "Total_Price": totalPrice,
-                "Total_Weight": totalWeight
-            });
-            fs.writeFile('./json/inventory_output.json', json, function (err) {
+            var json = JSON.stringify(array);
+            fs.writeFile('./inventory_output.json', json, function (err) {
                 if (err) throw err;
                 console.log('complete');
             });
 
             menu();
         } else if (choice == '5') {
-            console.log('Exit');
+            console.log('Closing');
             input.close()
             process.exit();
         } else {
@@ -60,18 +120,3 @@ menu = () => {
 }
 
 menu();
-
-// data.setInventaryName('wheat');
-// data.setInventaryPrice(100) ;
-// data.setInventaryWeight(50) ;
-// array = [];
-// array.push(data);
-// data = new Inventary();
-// data.setInventaryName('rice');
-// data.setInventaryPrice(70) ;
-// data.setInventaryWeight(50) ;
-// array.push(data)
-
-// array.forEach(element => {
-//     element.toString();
-// });
