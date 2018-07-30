@@ -1,6 +1,7 @@
 var readline = require('readline');
 var prompt = require('prompt');
 var utility = require('../utility/utility');
+var fs = require('fs');
 var queue = require('../data_structure/queue_linkedlist');
 var stack = require('../data_structure/stack_linkedlist');
 var stackCalender = require('../data_structure/stack_linkedlist_calendar');
@@ -36,7 +37,6 @@ exports.powerOfTwo = (number) => {
     sum = 0;
     for (var i = 0; i < number; i++) {
         results = results * 2;
-        //results = sum;
     }
     return results;
 }
@@ -81,10 +81,6 @@ exports.gambler = (cash, stake, goals, trails) => {
             loss++;
         }
         trails--;
-        // console.log('trails ',trails);
-        // console.log('stake ',stake);
-        // console.log('goals ',goals);
-        // console.log('cash ',cash);
     }
     console.log('Win % = ', (won / bets) * 100);
     console.log('Loss % = ', (loss / bets) * 100);
@@ -239,13 +235,10 @@ exports.isPrimeAnagram = (dataArray) => {
         if (index == -1) {
             anagramUnique.push(anagram[i]);
         }
-
     }
     anagramUnique.sort((a, b) => {
         return (a - b)
     });
-    // for (let i = 0; i < anagramUnique.length; i++)
-    //     console.log(anagramUnique[i]);
     return anagramUnique;
 }
 
@@ -350,14 +343,10 @@ exports.toBinary = (num) => {
     var binNumber = '';
     while (num > 0) {
         bin = num % 2;
-        //num >>= 1; 
         num = Math.floor(num / 2);
-        //console.log(bin);
         binNumber = binNumber + bin;
     }
-    //console.log(binNumber);
     binNumber = reverseString(binNumber);
-    //console.log(binNumber);
     return binNumber;
 }
 
@@ -806,23 +795,23 @@ exports.primeAnagram2dQueue = (range) => {
     queue.display();
 }
 
-exports.regex = (firstName,lastName,phoneNumber,string) => {
-    var string = string.replace('<<name>>',firstName);
-    var string = string.replace('<<full name>>',firstName+' '+lastName);
-    var string = string.replace('xxxxxxxxxx',phoneNumber);
+exports.regex = (firstName, lastName, phoneNumber, string) => {
+    var string = string.replace('<<name>>', firstName);
+    var string = string.replace('<<full name>>', firstName + ' ' + lastName);
+    var string = string.replace('xxxxxxxxxx', phoneNumber);
     var today = new Date();
     var dd = today.getDate();
-    var mm = today.getMonth()+1;
+    var mm = today.getMonth() + 1;
     var yyyy = today.getFullYear();
-    today = dd+'/'+mm+'/'+yyyy;
-    var string = string.replace('01/01/2016',today);
+    today = dd + '/' + mm + '/' + yyyy;
+    var string = string.replace('01/01/2016', today);
     console.log(string);
 }
 
 exports.shuffle = () => {
     var size = 9;
     var cards = [];
-    
+
     cards = utility.randomArray(size);
     return cards;
 }
@@ -832,54 +821,54 @@ exports.shuffle = () => {
  * @return the 2D array of 4x9 with random cards for 4 players
  */
 exports.randomArray = (size) => {
-    var r=0;
-    var c=0;
+    var r = 0;
+    var c = 0;
     var random = 0;
     var x = 0;
     var bound = 52;
     var array = [];
-   
+
     array = cardsDistribution(52);
     // console.log(array);
     // console.log(array.length);
     return array;
-    }
+}
 
-    cardsDistribution = (totalCoupons) => {
-        var unique = [9*4];
-        var number;
-        for (var i = 0; i < 9*4; i++) {
-            random = (Math.floor(Math.random() * totalCoupons)) + 1;
-            if (i == 0) {
-                unique[i] = random;
-            } else {
-                var loop = 0;
-                var count = 0;
-                while (loop == 0) {
-                    random = (Math.floor(Math.random() * totalCoupons)) + 1;
-                    for (var j = 0; j < unique.length; j++) {
-                        if (unique[j] == random ) {
-                            count++;
-                        }
+cardsDistribution = (totalCoupons) => {
+    var unique = [9 * 4];
+    var number;
+    for (var i = 0; i < 9 * 4; i++) {
+        random = (Math.floor(Math.random() * totalCoupons)) + 1;
+        if (i == 0) {
+            unique[i] = random;
+        } else {
+            var loop = 0;
+            var count = 0;
+            while (loop == 0) {
+                random = (Math.floor(Math.random() * totalCoupons)) + 1;
+                for (var j = 0; j < unique.length; j++) {
+                    if (unique[j] == random) {
+                        count++;
                     }
-    
-                    if (count == 0) {
-                        unique[i] = random;
-                        loop = 1;
-                    }
-                    count = 0;
                 }
+
+                if (count == 0) {
+                    unique[i] = random;
+                    loop = 1;
+                }
+                count = 0;
             }
         }
-        return unique;
     }
-    
-    inputRandom = (bound) => {
-        var a = Math.floor(Math.random()*bound)+1
-        console.log(a);
-        return a;
-        
-    }
+    return unique;
+}
+
+inputRandom = (bound) => {
+    var a = Math.floor(Math.random() * bound) + 1
+    console.log(a);
+    return a;
+
+}
 
 
 /**
@@ -892,15 +881,15 @@ exports.sort = (deck) => {
     var player2 = new int[size];
     var player3 = new int[size];
     var player4 = new int[size];
-    for(var i=0;i<4;i++) {
-        for(var j=0;j<size;j++) {
-            if(i==0)
+    for (var i = 0; i < 4; i++) {
+        for (var j = 0; j < size; j++) {
+            if (i == 0)
                 player1[j] = deck[i][j];
-            else if(i==1)
+            else if (i == 1)
                 player2[j] = deck[i][j];
-            else if(i==2)
+            else if (i == 2)
                 player3[j] = deck[i][j];
-            else if(i==3)
+            else if (i == 3)
                 player4[j] = deck[i][j];
         }
     }
@@ -909,15 +898,15 @@ exports.sort = (deck) => {
     player3 = bubbleSort(player3);
     player4 = bubbleSort(player4);
     var array = new int[4][size];
-    for(var i = 0;i<4;i++) {
-        for(var j=0;j<size;j++) {
-            if(i==0) 
+    for (var i = 0; i < 4; i++) {
+        for (var j = 0; j < size; j++) {
+            if (i == 0)
                 array[i][j] = player1[j];
-            else if(i==1)
+            else if (i == 1)
                 array[i][j] = player2[j];
-            else if(i==2)
+            else if (i == 2)
                 array[i][j] = player3[j];
-            else if(i==3)
+            else if (i == 3)
                 array[i][j] = player4[j];
         }
     }
@@ -930,14 +919,26 @@ exports.sort = (deck) => {
  * @return sorted array
  */
 exports.bubbleSort = (array) => {
-    for(var i=0;i<array.length;i++) {
-        for(var j=0;j<array.length-1;j++) {
-            if((array[j]%13)>(array[(j+1)])%13) {
+    for (var i = 0; i < array.length; i++) {
+        for (var j = 0; j < array.length - 1; j++) {
+            if ((array[j] % 13) > (array[(j + 1)]) % 13) {
                 var temp = array[j];
-                array[j] = array[j+1];
-                array[j+1] = temp;
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
             }
         }
     }
     return array;
+}
+
+exports.write = (fileName, array) => {
+    var json = JSON.stringify(array);
+    fs.writeFile(fileName, json, function (err) {
+        if (err) throw err;
+        console.log('complete');
+    });
+}
+
+exports.read = (fileName) => {
+    return JSON.parse(fs.readFileSync(fileName, 'utf8'));
 }
