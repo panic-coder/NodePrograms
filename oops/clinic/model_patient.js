@@ -30,6 +30,6 @@ module.exports = class Patient{
         this.age = age;
     }
     toString(){
-        return '\n\tName\t:\t'+this.name+'\n\tID\t:\t'+this.id+'\n\tPhone No.\t:\t'+this.phoneNumber+'\n\tAge\t:\t'+this.age;
+        return '\n\tName\t\t:\t'+this.name+'\n\tID\t\t:\t'+this.id+'\n\tPhone No.\t:\t'+this.phoneNumber+'\n\tAge\t\t:\t'+this.age;
     }
 }

@@ -23,6 +23,6 @@ module.exports = class Appointment{
         this.date = date;
     }
     toString(){
-        return '\n\tAppointment\t:\t'+this.patient+this.doctor+'\n\tDate\t:\t'+this.date;
+        return '\nAppointment\n\n\tPatient\n\t---------------------------------'+this.patient+'\n\n\tDoctor\n\t---------------------------------'+this.doctor+'\n\tDate\t\t:\t'+this.date;
     }
 }

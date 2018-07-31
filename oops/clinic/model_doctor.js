@@ -6,7 +6,7 @@ module.exports = class Doctor {
         this.availability = availability;
         this.numberOfPatients = numberOfPatients;
     }
-    getName = () => {
+    getName() {
         return this.name;
     }
     setName(name) {
@@ -30,7 +30,13 @@ module.exports = class Doctor {
     setAvailability() {
         this.availability = availability;
     }
+    getNumberOfPatients(){
+        return this.numberOfPatients;
+    }
+    setNumberOfPatients(numberOfPatients){
+        this.numberOfPatients = numberOfPatients;
+    }
     toString(){
-        return '\n\tName\t:\t'+this.name+'\n\tID\t:\t'+this.id+'\n\tSpecialization\t:\t'+this.specialization+'\n\tAvailability\t:\t'+this.availability;
+        return '\n\tName\t\t:\t'+this.name+'\n\tID\t\t:\t'+this.id+'\n\tSpecialization\t:\t'+this.specialization+'\n\tAvailability\t:\t'+this.availability;
     }
 }

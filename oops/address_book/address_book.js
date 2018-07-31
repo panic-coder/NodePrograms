@@ -17,6 +17,7 @@ menu = () => {
     input.question('1. New Address Book\n2. Open existing Address Book\n3. Exit ', (choice) => {
         if (choice == '1') {
             console.log();
+            array = [];
             filesArray.forEach(element => {
                 console.log(element);
             });
@@ -99,8 +100,6 @@ readData = (addressBookName) => {
 }
 
 innerMenu = () => {
-    console.log('inner menu');
-
     input.question('1. Add\n2. Edit\n3. Delete\n4. Display\n5. Sort by Name\n6. Sort by zip\n7. Save\n8. Save as\n9. Exit\n', (innerChoice) => {
         if (innerChoice == '1') {
             console.log('add');
@@ -130,8 +129,6 @@ innerMenu = () => {
             })
 
         } else if (innerChoice == '2') {
-            console.log('edit');
-
             input.question('Enter the first name of person for editing ', (name) => {
                 var count = 0;
                 array.forEach(element => {
@@ -169,7 +166,6 @@ innerMenu = () => {
             })
 
         } else if (innerChoice == '3') {
-            console.log('delete');
             if (array.length != 0) {
                 input.question('Enter the first name to delete ', (name) => {
                     for (var i = 0; i < array.length; i++) {
@@ -185,19 +181,16 @@ innerMenu = () => {
             }
 
         } else if (innerChoice == '4') {
-            console.log('display')
             array.forEach(element => {
                 console.log(element.toString());
             });
             innerMenu();
         } else if (innerChoice == '5') {
-            console.log(('sort name'));
             array.sort(function (a, b) {
                 return (a.firstName > b.firstName) ? 1 : ((b.firstName > a.firstName) ? -1 : 0);
             });
             innerMenu();
         } else if (innerChoice == '6') {
-            console.log('sort zip');
             array.sort(function (a, b) {
                 return (a.address.zip > b.address.zip) ? 1 : ((b.address.zip > a.address.zip) ? -1 : 0);
             });

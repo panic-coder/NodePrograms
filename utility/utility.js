@@ -935,7 +935,7 @@ exports.write = (fileName, array) => {
     var json = JSON.stringify(array);
     fs.writeFile(fileName, json, function (err) {
         if (err) throw err;
-        console.log('complete');
+        console.log('Saved');
     });
 }
 
