@@ -180,6 +180,56 @@ exports.chill = (t, v) => {
     return w;
 }
 
+exports.isAnagramOrNot = (data1, data2) => {
+    var word1 = anagramArrange(data1);
+    var word2 = anagramArrange(data2);
+    if(word1 == word2){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+anagramArrange = (data) => {
+    data = data.split('')
+    var withoutSpace = '';
+    for(var i=0;i<data.length;i++){
+        if(data[i] != ' '){
+            withoutSpace = withoutSpace + data[i];
+        }
+    }
+    data = withoutSpace;
+    data = data.split('');
+    
+    for(var i=0;i<data.length;i++){
+        var code  = data[i].charCodeAt(0);
+        if(code < 97){
+            data[i] = String.fromCharCode(code+Number(32))
+            
+        }
+    }
+
+    for(var i=0;i<data.length;i++){
+        for(var j=0;j<data.length-1;j++){
+            if(data[j]>data[j+1]){
+                var temp = data[j];
+                data[j] = data[j+1];
+                data[j+1] = temp;
+            }
+        }
+    }
+    var newData = '';
+
+    for(var i=0;i<data.length;i++){
+        
+        if(data[i] != ' '){
+            newData = newData + data[i];
+        }
+    }
+    return newData;
+    
+}
+
 exports.isAnagram = (data1, data2) => {
     var word1 = spaceAndArrange(data1);
     var word2 = spaceAndArrange(data2);
