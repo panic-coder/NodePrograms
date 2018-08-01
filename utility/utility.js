@@ -821,16 +821,8 @@ exports.shuffle = () => {
  * @return the 2D array of 4x9 with random cards for 4 players
  */
 exports.randomArray = (size) => {
-    var r = 0;
-    var c = 0;
-    var random = 0;
-    var x = 0;
-    var bound = 52;
     var array = [];
-
     array = cardsDistribution(52);
-    // console.log(array);
-    // console.log(array.length);
     return array;
 }
 
@@ -877,38 +869,62 @@ inputRandom = (bound) => {
  */
 exports.sort = (deck) => {
     var size = 9;
-    var player1 = new int[size];
-    var player2 = new int[size];
-    var player3 = new int[size];
-    var player4 = new int[size];
-    for (var i = 0; i < 4; i++) {
-        for (var j = 0; j < size; j++) {
-            if (i == 0)
-                player1[j] = deck[i][j];
-            else if (i == 1)
-                player2[j] = deck[i][j];
-            else if (i == 2)
-                player3[j] = deck[i][j];
-            else if (i == 3)
-                player4[j] = deck[i][j];
-        }
+    var player1 = [];
+    var player2 = [];
+    var player3 = [];
+    var player4 = [];
+    var k=0,l=0,m=0,n=0;
+    for (var i = 0; i < 4*9; i++) {
+        
+            if (i >= 0 && i < 9){
+                player1[k] = deck[i];
+                k++;
+            }
+                
+            else if (i >= 9 && i < 18){
+                player2[l] = deck[i];
+                l++;
+            }
+                
+            else if (i >= 18 & i < 27){
+                player3[m] = deck[i];
+                m++;
+            }
+                
+            else if (i >= 27 && i < 36){
+                player4[n] = deck[i];
+                n++;
+            }
+                
+        
     }
+    k=0,l=0,m=0,n=0; 
     player1 = bubbleSort(player1);
     player2 = bubbleSort(player2);
     player3 = bubbleSort(player3);
     player4 = bubbleSort(player4);
-    var array = new int[4][size];
-    for (var i = 0; i < 4; i++) {
-        for (var j = 0; j < size; j++) {
-            if (i == 0)
-                array[i][j] = player1[j];
-            else if (i == 1)
-                array[i][j] = player2[j];
-            else if (i == 2)
-                array[i][j] = player3[j];
-            else if (i == 3)
-                array[i][j] = player4[j];
-        }
+    var array = [];
+    for (var i = 0; i < 4*9; i++) {
+            if (i >= 0 && i < 9){
+                array[i]= player1[k];
+                k++
+            }
+                
+            else if (i >= 9 && i < 18){
+                array[i] = player2[l];
+                l++;
+            }
+                
+            else if (i >= 18 && i < 27){
+                array[i] = player3[m];
+                m++;
+            }
+                
+            else if (i >= 27 & i < 36){
+                array[i] = player4[n];
+                n++;
+            }
+                
     }
 
     return array;
@@ -918,7 +934,7 @@ exports.sort = (deck) => {
  * @param array
  * @return sorted array
  */
-exports.bubbleSort = (array) => {
+bubbleSort = (array) => {
     for (var i = 0; i < array.length; i++) {
         for (var j = 0; j < array.length - 1; j++) {
             if ((array[j] % 13) > (array[(j + 1)]) % 13) {
