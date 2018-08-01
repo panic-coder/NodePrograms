@@ -61,37 +61,45 @@ menu = () => {
             })
         } else if (choice == '3') {
             addRemoveMenu = () => {
-            input.question('1. Add\n2. Remove\n3. Save\n4. Exit ', (companyChoice) => {
-                if(companyChoice == '1'){
-                    companyArray.forEach(element => {
-                        linkedlist.add(element);
-                    });
-                    input.question('Enter symbol ', (symbol) => {
-                        input.question('Enter price per share ', (price) => {
-                            input.question('Enter total shares ',(shares) => {
-                                company = new Company(symbol, Number(price), Number(shares));
-                                linkedlist.add(company);
-                                companyArray.push(company);
-                                linkedlist.display();
-                                addRemoveMenu();
+                input.question('1. Add\n2. Remove\n3. Save\n4. Exit ', (companyChoice) => {
+                    if (companyChoice == '1') {
+                        companyArray.forEach(element => {
+                            linkedlist.add(element);
+                        });
+                        input.question('Enter symbol ', (symbol) => {
+                            input.question('Enter price per share ', (price) => {
+                                input.question('Enter total shares ', (shares) => {
+                                    company = new Company(symbol, Number(price), Number(shares));
+                                    linkedlist.add(company);
+                                    companyArray.push(company);
+                                    linkedlist.display();
+                                    addRemoveMenu();
+                                })
                             })
                         })
-                    })
-                }
-                else if (companyChoice == '2'){
-                    input.question('Enter the symbol you want to delete ', (symbol) => {
-                        companyArray.forEach(element => {
-                            if(element.getSymbol() == symbol){
-                                companyArray.pop(element);
-                                console.log(companyArray);
-                                addRemoveMenu()
-                            }
+                    } else if (companyChoice == '2') {
+                        input.question('Enter the symbol you want to delete ', (symbol) => {
+                            companyArray.forEach(element => {
+                                if (element.getSymbol() == symbol) {
+                                    companyArray.pop(element);
+                                    console.log(companyArray);
+                                    addRemoveMenu()
+                                }
+                            })
                         })
-                    })
-                }
-            });
-        }
-        addRemoveMenu();
+                    } else if (companyChoice == '3') {
+                        utility.write('./company.json', companyArray);
+                        addRemoveMenu();
+                    } else if (companyChoice == '4') {
+                        console.log('Closing company Add & Remove Menu');
+                        menu();
+                    } else {
+                        console.log('Something went wrong!\nClosing company Add & Remove Menu');
+                        menu();
+                    }
+                });
+            }
+            addRemoveMenu();
 
         } else if (choice == '4') {
             console.log('Closing System');
@@ -144,7 +152,7 @@ accountMenu = () => {
                                     customer.setShares(amount / price);
                                     customer.setAmount(customerAmount - amount);
                                     customerArray.push(customer);
-                                    
+
                                 }
                                 companyElement.setTotalShares(companyElement.getTotalShares() - Number(amount / price));
                                 var date = new Date();
@@ -194,7 +202,7 @@ accountMenu = () => {
                     if (reportChoice == '1') {
                         var amount
                         customerArray.forEach(element => {
-                            if(element.getSymbol() != ''){
+                            if (element.getSymbol() != '') {
                                 console.log(element.toString());
                             }
                             amount = element.getAmount();
