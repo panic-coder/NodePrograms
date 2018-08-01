@@ -11,7 +11,7 @@ module.exports = class Company{
         this.symbol = symbol;
     }
     getPricePerShare(){
-        return this.getpricePerShare;
+        return this.pricePerShare;
     }
     setPricePerShare(pricePerShare){
         this.pricePerShare = pricePerShare;
@@ -23,6 +23,6 @@ module.exports = class Company{
         this.totalShares = totalShares;
     }
     toString(){
-        return '\nSymbol\t:\t'+this.symbol+'\nPrice per share\t:\t'+this.pricePerShare+'\nToatal Shares\t:\t'+this.totalShares;
+        return '\nSymbol\t\t:\t'+this.symbol+'\nPrice per share\t:\t'+this.pricePerShare+'\nToatal Shares\t:\t'+this.totalShares;
     }
 }

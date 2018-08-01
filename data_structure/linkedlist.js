@@ -51,6 +51,10 @@ exports.search = (item) => {
 		return false;
 }
 
+exports.pop = () => {
+	return head.data;
+}
+
 exports.remove = (item) => {
 	var temp = head,
 		prev = null;

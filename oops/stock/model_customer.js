@@ -19,7 +19,7 @@ module.exports = class Customer{
     getShares(){
         return this.shares;
     }
-    setShares(){
+    setShares(shares){
         this.shares = shares;
     }
     toString(){
