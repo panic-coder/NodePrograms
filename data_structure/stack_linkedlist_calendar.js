@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Stack using user defined linked list for calender problem.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 29-07-2018
+ */
 class Node {
 	constructor(data) {
         this.data=data;

@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Model for patient object.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 01-08-2018
+ */
 module.exports = class Patient{
     constructor(name, id, phoneNumber, age){
         this.name = name;

@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Model class for address object.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 31-07-2018
+ */
 module.exports = class Address{
     constructor(city, state, zip){
         this.city = city;

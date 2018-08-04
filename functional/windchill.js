@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Calculating the wind chill.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 23-07-2018
+ */
 var utility = require('../utility/utility');
 var input = utility.userInput();
 input.question('Enter temperature gretaer than 50 ',(t) => {

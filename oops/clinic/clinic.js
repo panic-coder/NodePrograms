@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Clinic management system object oriented, adding doctors, patients taking appointments, displaying data and saving in json file.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 01-08-2018
+ */
 var utility = require('/home/bridgelabz/Shubham/NodePrograms/utility/utility.js');
 var Patient = require('./model_patient');
 var Doctor = require('./model_doctor');
@@ -9,6 +16,10 @@ var patientArray = [];
 var doctorArray = [];
 var appointmentArray = [];
 var input = utility.userInput();
+
+/**
+ * @description Main menu of clinic management system.
+ */
 menu = () => {
     input.question('\n------------------\n\tMenu\n1. Add new entries\n2. Take appointment\n3. Display\n4. Save\n5. Exit\n------------------\n', (choice) => {
         if (choice == '1') {
@@ -30,6 +41,9 @@ menu = () => {
         }
     })
 }
+/**
+ * @description Add menu
+ */
 add = () => {
     input.question('\n------------------\n     Add Menu\n1. Patient\n2. Doctor\n3. Exit\n------------------\n', (addChoice) => {
         if (addChoice == '1') {
@@ -66,6 +80,9 @@ add = () => {
     })
 }
 
+/**
+ * @description Function for taking appointment.
+ */
 takeAppointment = () => {
     var patientCount = 0;
     var doctorCount = 0;
@@ -104,17 +121,12 @@ takeAppointment = () => {
             });
 
         })
-        // if (patientCount == 0) {
-        //     console.log("Patient with the entered name and id doesn't exists");
-        //     menu();
-        // }
-        // if (doctorCount == 0) {
-        //     console.log("Doctor with the entered name and id does't exists");
-        //     menu();
-        // }
     })
 }
 
+/**
+ * @description Display menu.
+ */
 display = () => {
     input.question('\n-------------------------\n      Display Menu \n1. Doctors\n2. Patients\n3. Appointment\n4. Doctor Availability\n5. Popular Specialization\n6. Popular Doctor\n7. Exit\n-------------------------\n', (displayChoice) => {
         if (displayChoice == '1') {
@@ -177,6 +189,9 @@ display = () => {
     })
 }
 
+/**
+ * @description Save menu.
+ */
 save = () => {
     input.question('\n--------------------\n      Save Menu\n1. Save Doctors\n2. Save Patients\n3. Save Appointments\n4. Exit\n--------------------\n', (saveChoice) => {
         if (saveChoice == '1') {
@@ -196,6 +211,9 @@ save = () => {
     })
 }
 
+/**
+ * @description reading doctors data from json file.
+ */
 readDoctors = () => {
     var obj = utility.read('./doctors.json');
     obj.forEach(element => {
@@ -204,6 +222,9 @@ readDoctors = () => {
     })
 }
 
+/**
+ * @description reading patient data from json file.
+ */
 readPatients = () => {
     var obj = utility.read('./patients.json');
     obj.forEach(element => {
@@ -212,6 +233,9 @@ readPatients = () => {
     })
 }
 
+/**
+ * @description reading appointment data from json file.
+ */
 readAppointment = () => {
     var obj = utility.read('./appointment.json')
     obj.forEach(element => {

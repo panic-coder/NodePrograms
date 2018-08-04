@@ -1,4 +1,10 @@
-//var Address = require('./model_address');
+/**
+ * Purpose   : Model for person object.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 31-07-2018
+ */
 module.exports = class Person{
     constructor(firstName, lastName, address, phoneNumber){
         this.firstName = firstName;

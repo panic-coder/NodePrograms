@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Replacing a string values via user input values after validating it.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 30-07-2018
+ */
 var string = 'Hello <<name>>, We have your full name as <<full name>> in our system. your contact number is 91-xxxxxxxxxx. Please,let us know in case of any clarification Thank you BridgeLabz 01/01/2016.'; 
 var utility = require('../utility/utility');
 var input = utility.userInput();

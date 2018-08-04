@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Distributing 9 cards each for 4 players and displaying it and then arranging the cards for all player and displaying it again.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 04-08-2018
+ */
 var utility = require('../utility/utility');
 var queue = require('/home/bridgelabz/Shubham/NodePrograms/data_structure/queue_linkedlist.js');
 var cards = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];

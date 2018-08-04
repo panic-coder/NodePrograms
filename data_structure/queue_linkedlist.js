@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Queue using user defined linked list.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 28-07-2018
+ */
 var queue = require('../data_structure/queue_linkedlist');
 
 class Node {

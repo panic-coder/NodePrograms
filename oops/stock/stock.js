@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Stock Management System creating account, buy, sell shares, saving data in json file.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 02-08-2018
+ */
 var utility = require('/home/bridgelabz/Shubham/NodePrograms/utility/utility.js');
 var Company = require('./model_company');
 var Customer = require('./model_customer');
@@ -16,6 +23,9 @@ var customer = new Customer();
 var transaction = new Transaction();
 var name = '';
 
+/**
+ * @description Main menu of stock.
+ */
 menu = () => {
     input.question('1. Create Account\n2. Open Existing Account\n3. Add & Remove Company\n4. Exit ', (choice) => {
         if (choice == '1') {
@@ -113,6 +123,9 @@ menu = () => {
     })
 }
 
+/**
+ * @description Menu after opening existing account.
+ */
 accountMenu = () => {
     input.question('1. Add amount\n2. Buy Shares\n3. Sell Shares\n4. Save Account\n5. Print Report\n6. Exit ', (accountChoice) => {
         if (accountChoice == '1') {
@@ -240,6 +253,9 @@ accountMenu = () => {
     })
 }
 
+/**
+ * @description reading the json files.
+ */
 checkingFiles = () => {
     glob("*.json", function (err, files) {
         if (err) {
@@ -251,6 +267,9 @@ checkingFiles = () => {
     })
 }
 
+/**
+ * @description reading company data from json file.
+ */
 readCompany = () => {
     var obj = utility.read('./company.json');
     obj.forEach(element => {
@@ -259,6 +278,9 @@ readCompany = () => {
     })
 }
 
+/**
+ * @description reading customer data from json file.
+ */
 readCustomer = () => {
     var obj = utility.read('./' + name + '.json');
     obj.forEach(element => {
@@ -267,6 +289,9 @@ readCustomer = () => {
     })
 }
 
+/**
+ * @description reading transaction data from json file.
+ */
 readTransaction = () => {
     var obj = utility.read('./transaction.json');
     obj.forEach(element => {

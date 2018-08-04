@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Model for customer object.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 02-08-2018
+ */
 module.exports = class Customer{
     constructor(symbol, amount, shares){
         this.symbol = symbol;

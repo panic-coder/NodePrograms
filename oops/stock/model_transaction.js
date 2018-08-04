@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Model for transaction object.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 02-08-2018
+ */
 module.exports = class Transaction{
     constructor(buySell, name, symbol, date){
         this.buySell = buySell;

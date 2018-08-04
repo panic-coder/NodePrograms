@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Sorting using Merge sort.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 24-07-2018
+ */
 var utility = require('../utility/utility');
 var input = utility.userInput();
 var array = [];

@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Hashing
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 28-07-2018
+ */
 var utility = require('../utility/utility');
 var hash = require('./hash_chaining');
 var input = utility.userInput();

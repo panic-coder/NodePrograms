@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Address Book via object oriented, creating new address book,  adding, removing, editing address objects, deleting, sorting and saving objects in json. 
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 31-07-2018
+ */
 var glob = require("glob");
 var fs = require("fs");
 var Person = require('./model_person');
@@ -13,6 +20,9 @@ var newAddressBookCount = 0;
 var fileSaveAddress = './'
 var addressBookName = '';
 
+/**
+ * @description Main menu for address book.
+ */
 menu = () => {
     input.question('1. New Address Book\n2. Open existing Address Book\n3. Exit ', (choice) => {
         if (choice == '1') {
@@ -70,6 +80,10 @@ menu = () => {
     })
 
 }
+
+/**
+ * @description reading all the json files or different address books.
+ */
 checkingFiles = () => {
     glob("*.json", function (err, files) {
         if (err) {
@@ -81,6 +95,9 @@ checkingFiles = () => {
     })
 }
 
+/**
+ * @description reading data from a json file.
+ */
 readData = (addressBookName) => {
     var obj = utility.read(fileSaveAddress + addressBookName + '.json');
     obj.forEach(elements => {
@@ -99,6 +116,9 @@ readData = (addressBookName) => {
     return true;
 }
 
+/**
+ * @description Inner menu of address book after opening a particular address book.
+ */
 innerMenu = () => {
     input.question('1. Add\n2. Edit\n3. Delete\n4. Display\n5. Sort by Name\n6. Sort by zip\n7. Save\n8. Save as\n9. Exit\n', (innerChoice) => {
         if (innerChoice == '1') {

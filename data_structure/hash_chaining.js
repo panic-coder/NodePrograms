@@ -1,3 +1,11 @@
+/**
+ * Purpose   : Hashing via using user defined linked list
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 28-07-2018
+ */
+
 var hashrequire = require('../data_structure/hash_chaining')
 var Node = require('./node');
 
@@ -12,11 +20,6 @@ module.exports = class HashChaining {
         size = 0;    
     }
 }
-
-// exports.HashChaining = (tableSize) => {
-//     table = new Node[tableSize];
-//     size = 0;
-// }
 
 exports.isEmpty = () => {
     return size == 0;

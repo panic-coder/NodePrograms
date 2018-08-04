@@ -1,6 +1,12 @@
+/**
+ * Purpose   : Model class for inventary object.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 30-07-2018
+ */
 module.exports = class Inventary {
     constructor(name, price, weight) {
-        // always initialize all instance properties
         this.name = name;
         this.price = price;
         this.weight = weight;

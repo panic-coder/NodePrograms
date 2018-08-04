@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Finding the prime numbers for the given range.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 24-07-2018
+ */
 var utility = require('../utility/utility');
 for(var i=2;i<=1000;i++){
     var results = utility.isPrime(i);
@@ -5,12 +12,3 @@ for(var i=2;i<=1000;i++){
         console.log(i);
     }
 }
-    
-// var inquirer = require('inquirer');
-// inquirer
-//   .prompt([
-//     /* Pass your questions in here */
-//   ])
-//   .then(answers => {
-//     // Use user feedback for... whatever!!
-//   });

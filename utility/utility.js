@@ -6,10 +6,20 @@ var queue = require('../data_structure/queue_linkedlist');
 var stack = require('../data_structure/stack_linkedlist');
 var stackCalender = require('../data_structure/stack_linkedlist_calendar');
 
+/** 
+ * @description Replacing of the given String.
+ * @param string is the whole string where changes are to be done
+ * @param username is the replacement of <<UserName>>
+ * @returns the string with replaced username
+ */
 exports.stringReplace = function (string, username) {
     return string.replace("<<UserName>>", username);
 }
 
+/**
+ * @description Creates the readline object.
+ * @returns the readline object
+ */
 exports.userInput = function () {
     var rl = readline.createInterface({
         input: process.stdin,
@@ -18,10 +28,19 @@ exports.userInput = function () {
     return rl;
 }
 
+/**
+ * @description Generates random number.
+ * @returns the generated random number
+ */
 exports.random = () => {
     return Math.random();
 }
 
+/**
+ * @description Finds whether a year is leap or not.
+ * @param {Number} year 
+ * @returns true is year is leap else false
+ */
 exports.leap = (year) => {
     if (year % 100 != 0 && year % 4 == 0) {
         return true;
@@ -32,6 +51,11 @@ exports.leap = (year) => {
     }
 }
 
+/**
+ * @description Finding power of two
+ * @param {Number} number 
+ * @returns the results after finding the power
+ */
 exports.powerOfTwo = (number) => {
     var results = 1;
     sum = 0;
@@ -41,6 +65,10 @@ exports.powerOfTwo = (number) => {
     return results;
 }
 
+/**
+ * @description Finding the sum of n harmonic numbers 
+ * @param {Number} N 
+ */
 exports.harmonic = (N) => {
     sum = 0;
     for (var i = 1; i <= N; i++) {
@@ -49,6 +77,10 @@ exports.harmonic = (N) => {
     return sum;
 }
 
+/**
+ * @description Finding the factors of a given number
+ * @param {Number} value 
+ */
 exports.factors = (value) => {
     var i = 2;
     var calculatingValue = value;
@@ -62,6 +94,13 @@ exports.factors = (value) => {
     }
 }
 
+/**
+ * @description Finding the win % and loss % of the given input
+ * @param {Number} cash 
+ * @param {Number} stake 
+ * @param {Number} goals 
+ * @param {Number} trails 
+ */
 exports.gambler = (cash, stake, goals, trails) => {
     var won = 0,
         bets = 0,
@@ -86,6 +125,10 @@ exports.gambler = (cash, stake, goals, trails) => {
     console.log('Loss % = ', (loss / bets) * 100);
 }
 
+/**
+ * @description Finding unique coupon numbers for the given param
+ * @param {Number} totalCoupons 
+ */
 exports.coupon = (totalCoupons) => {
     var unique = [totalCoupons];
     var number;
@@ -115,6 +158,11 @@ exports.coupon = (totalCoupons) => {
     return unique;
 }
 
+/**
+ * @description Displaying 2D array
+ * @param {Number} m 
+ * @param {Number} n 
+ */
 exports.array = (m, n) => {
     var arr = [
         [1, 2],
@@ -128,6 +176,11 @@ exports.array = (m, n) => {
     }
 }
 
+/**
+ * @description Finds number of triplets that sums to zero
+ * @param {Number} array 
+ * @returns the count of triplets
+ */
 exports.triplets = (array) => {
     var count = 0;
     for (var k = 0; k < array.length; k++) {
@@ -143,11 +196,22 @@ exports.triplets = (array) => {
     return count;
 }
 
-
+/**
+ * @description Finds distance between x and y
+ * @param {Number} x 
+ * @param {Number} y 
+ * @returns Calculated value for distance
+ */
 exports.distance = (x, y) => {
     return Math.sqrt(x * x + y * y);
 }
 
+
+/**
+ * @description Finding permutation
+ * @param {*} inputArr 
+ * @returns the permuted array
+ */
 exports.permutator = (inputArr) => {
 
     let result = [];
@@ -167,6 +231,12 @@ exports.permutator = (inputArr) => {
     return result;
 }
 
+/**
+ * @description Finding roots
+ * @param {*} a 
+ * @param {*} b 
+ * @param {*} c 
+ */
 exports.quad = (a, b, c) => {
     var delta = (b * b) - (4 * a * c);
     var root1 = (-b + Math.sqrt(delta)) / (2 * a);
@@ -175,11 +245,23 @@ exports.quad = (a, b, c) => {
     console.log('Root 2 =', root2);
 }
 
+/**
+ * @description Calculates the wind chill
+ * @param {Number} t 
+ * @param {Number} v 
+ * @returns the calculated value
+ */
 exports.chill = (t, v) => {
     var w = 35.74 + (0.6215 * t) + ((0.4275 * t) - (35.75)) * Math.pow(v, 0.16);
     return w;
 }
 
+/**
+ * @description Finding if the given inputs are anagram or not
+ * @param {*} data1 
+ * @param {*} data2 
+ * @returns true if anagram else false
+ */
 exports.isAnagramOrNot = (data1, data2) => {
     var word1 = anagramArrange(data1);
     var word2 = anagramArrange(data2);
@@ -190,6 +272,11 @@ exports.isAnagramOrNot = (data1, data2) => {
     }
 }
 
+/**
+ * @description Removes spaces, convertes to lower case, arrange in alphabetical order 
+ * @param data 
+ * @returns the data after performing the following operations
+ */
 anagramArrange = (data) => {
     data = data.split('')
     var withoutSpace = '';
@@ -230,6 +317,12 @@ anagramArrange = (data) => {
     
 }
 
+/**
+ * @description Finds if the given inputs are anagram or not
+ * @param {*} data1 
+ * @param {*} data2 
+ * @returns true if anagram else false
+ */
 exports.isAnagram = (data1, data2) => {
     var word1 = spaceAndArrange(data1);
     var word2 = spaceAndArrange(data2);
@@ -240,6 +333,11 @@ exports.isAnagram = (data1, data2) => {
     }
 }
 
+/**
+ * @description Removes spaces and sort and joins the given input
+ * @param data
+ * @returns data after performing the above operations
+ */
 spaceAndArrange = (data) => {
     data = data.toString();
     data = data.replace('', '');
@@ -247,6 +345,11 @@ spaceAndArrange = (data) => {
     return data
 }
 
+/**
+ * @description Finds is the nnumber is prime or not
+ * @param {*} data 
+ * @returns true if prime else false
+ */
 exports.isPrime = (data) => {
     var count = 0;
     for (var i = 2; i < data / 2; i++) {
@@ -261,6 +364,11 @@ exports.isPrime = (data) => {
     }
 }
 
+/**
+ * @description Finds all the prime numbers that are anagram according to the given input array
+ * @param {*} dataArray 
+ * @returns array of prime numbers those are anagram
+ */
 exports.isPrimeAnagram = (dataArray) => {
     var anagram = [];
     var count = 0;
@@ -292,6 +400,11 @@ exports.isPrimeAnagram = (dataArray) => {
     return anagramUnique;
 }
 
+/**
+ * @description Searching values via Binary Search
+ * @param {*} search value to be searched
+ * @param {*} array source from where values to be searched
+ */
 exports.binarySearch = (search, array) => {
     var start = 0;
     var end = array.length;
@@ -308,6 +421,11 @@ exports.binarySearch = (search, array) => {
     return false;
 }
 
+/**
+ * @description Sorting via insertion sort
+ * @param {*} array 
+ * @returns the sorted array
+ */
 exports.insertion = (array) => {
     for (var i = 1; i < array.length; i++) {
         var ne = array[i];
@@ -320,6 +438,11 @@ exports.insertion = (array) => {
     return array;
 }
 
+/**
+ * @description Sorting via bubble sort
+ * @param {*} array 
+ * @returns the sorted array
+ */
 exports.bubble = (array) => {
     for (var i = 0; i < array.length; i++) {
         for (var j = 0; j < array.length - 1; j++) {
@@ -333,6 +456,10 @@ exports.bubble = (array) => {
     return array;
 }
 
+/**
+ * @description Calculating minimum number of notes dispached for a given number of amount
+ * @param {*} amount 
+ */
 exports.vendingmachine = (amount) => {
 
     var notes = [1000, 500, 100, 50, 20, 10, 5, 2, 1];
@@ -350,6 +477,13 @@ exports.vendingmachine = (amount) => {
     }
 }
 
+/**
+ * @description Calculating the week day on a particular entered date
+ * @param {*} month 
+ * @param {*} day 
+ * @param {*} year 
+ * @returns the calculated week day
+ */
 exports.day = (month, day, year) => {
     var calculationMonth, calculationDay, calculationYear;
     calculationYear = (Number(year) - Number(Math.floor((14 - month) / 12)));
@@ -359,14 +493,31 @@ exports.day = (month, day, year) => {
     return calculationDay;
 }
 
+/**
+ * @description Conversion from Celsius to Fahrenheit
+ * @param {*} C 
+ * @returns temperature in fahrenheit
+ */
 exports.toFahrenheit = (C) => {
     return (Number(C * 9 / 5) + Number(32));
 }
 
+/**
+ * @description Conversion from Fahrenheit to Celsius
+ * @param {*} F 
+ * @returns temperature in celsius
+ */
 exports.toCelsius = (F) => {
     return (Number(F - 32) * Number(5 / 9));
 }
 
+/**
+ * @description Calculating the monthly payment amount
+ * @param {*} P 
+ * @param {*} Y 
+ * @param {*} R 
+ * @returns the calculating amount
+ */
 exports.payment = (P, Y, R) => {
     var n = 12 * Y;
     console.log(n);
@@ -378,6 +529,10 @@ exports.payment = (P, Y, R) => {
     return payment;
 }
 
+/**
+ * @description Calculating square root of a number via Newtons method
+ * @param {*} c 
+ */
 exports.sqrtOfNumber = (c) => {
     var t = 0;
     t = c;
@@ -388,6 +543,11 @@ exports.sqrtOfNumber = (c) => {
     console.log(t);
 }
 
+/**
+ * @description Converts decimal into binary
+ * @param {*} num 
+ * @returns the converted number
+ */
 exports.toBinary = (num) => {
     var bin = 0;
     var binNumber = '';
@@ -400,10 +560,20 @@ exports.toBinary = (num) => {
     return binNumber;
 }
 
+/**
+ * @description Reverse a string
+ * @param {*} str 
+ * @returns reversed string
+ */
 function reverseString(str) {
     return str.split('').reverse().join('');
 }
 
+/**
+ * @description Swapping nibbles of the given binary input
+ * @param {*} binaryInput 
+ * @returns the swapped value
+ */
 exports.swapNibbles = (binaryInput) => {
     var c = Array.from(binaryInput);
     console.log(c);
@@ -432,6 +602,11 @@ exports.swapNibbles = (binaryInput) => {
     return swapedNibbles;
 }
 
+/**
+ * @description Finding palindrome via deque
+ * @param {*} word 
+ * @returns true if palindrome else false
+ */
 exports.dequePalindrome = (word) => {
     var dq = require('../data_structure/deque');
     var c = Array.from(word);
@@ -451,6 +626,11 @@ exports.dequePalindrome = (word) => {
         return false;
 }
 
+/**
+ * @description Calculating the number of nodes for a given input
+ * @param {*} totalNodes 
+ * @returns the total nodes formed
+ */
 exports.binarySearchTree = (totalNodes) => {
     var numerator = factorial(2 * totalNodes);
     var denominator = (factorial(Number(totalNodes) + Number(1))) * (factorial(totalNodes));
@@ -458,6 +638,11 @@ exports.binarySearchTree = (totalNodes) => {
     return differentTrees;
 }
 
+/**
+ * @description Finding factorial
+ * @param i
+ * @returns the calculated factorial
+ */
 factorial = (i) => {
     var fact = 1;
     while (i > 0) {
@@ -467,6 +652,11 @@ factorial = (i) => {
     return fact;
 }
 
+/**
+ * @description Displaying calculator for the given month and year
+ * @param {*} month 
+ * @param {*} year 
+ */
 exports.calender = (month, year) => {
 
     var year1, month1, x, day = 1,
@@ -564,6 +754,11 @@ exports.calender = (month, year) => {
     }
 }
 
+/**
+ * @description Finding if the year is leap or not
+ * @param year
+ * @returns true if leap else false
+ */
 leapYear = (year) => {
     if (year % 100 != 0 && year % 4 == 0) {
         return true;
@@ -574,6 +769,11 @@ leapYear = (year) => {
     }
 }
 
+/**
+ * @description Displaying calender via queue
+ * @param {*} month 
+ * @param {*} year 
+ */
 exports.calenderQueue = (month, year) => {
     var year1, month1, x, day = 1,
         day1;
@@ -668,6 +868,11 @@ exports.calenderQueue = (month, year) => {
     queue.display();
 }
 
+/**
+ * @description Displaying calender via stack
+ * @param {*} month 
+ * @param {*} year 
+ */
 exports.calenderStack = (month, year) => {
     var year1, month1, x, day = 1,
         day1;
@@ -773,6 +978,10 @@ exports.calenderStack = (month, year) => {
     }
 }
 
+/**
+ * @description Displaying prime range in a 2D format
+ * @param {*} range 
+ */
 exports.prime2d = (range) => {
     var primeArray = [];
     var pa = [];
@@ -792,6 +1001,10 @@ exports.prime2d = (range) => {
     }
 }
 
+/**
+ * @description Displaying prime number that are anagram in a 2D format
+ * @param {*} range 
+ */
 exports.primeAnagram2d = (range) => {
     var primeArray = [];
     var anagram2d = [];
@@ -817,6 +1030,10 @@ exports.primeAnagram2d = (range) => {
     }
 }
 
+/**
+ * @description Prime numbers that are anagram in 2D format via stack
+ * @param {*} range 
+ */
 exports.primeAnagram2dStack = (range) => {
     var primeArray = [];
     for (var i = 2; i < range; i++) {
@@ -831,6 +1048,10 @@ exports.primeAnagram2dStack = (range) => {
     stack.display();
 }
 
+/**
+ * @description Prime numbers that are anagram in 2D format via queue
+ * @param {*} range 
+ */
 exports.primeAnagram2dQueue = (range) => {
     var primeArray = [];
     for (var i = 2; i < range; i++) {
@@ -845,6 +1066,13 @@ exports.primeAnagram2dQueue = (range) => {
     queue.display();
 }
 
+/**
+ * @description Replacing string with user input values after validating it
+ * @param {*} firstName 
+ * @param {*} lastName 
+ * @param {*} phoneNumber 
+ * @param {*} string 
+ */
 exports.regex = (firstName, lastName, phoneNumber, string) => {
     var string = string.replace('<<name>>', firstName);
     var string = string.replace('<<full name>>', firstName + ' ' + lastName);
@@ -858,6 +1086,9 @@ exports.regex = (firstName, lastName, phoneNumber, string) => {
     console.log(string);
 }
 
+/**
+ * @description Shuffling of cards 
+ */
 exports.shuffle = () => {
     var size = 9;
     var cards = [];
@@ -867,6 +1098,7 @@ exports.shuffle = () => {
 }
 
 /**
+ * @description calling random values function
  * @param size is the number of cards each player receives
  * @return the 2D array of 4x9 with random cards for 4 players
  */
@@ -876,6 +1108,9 @@ exports.randomArray = (size) => {
     return array;
 }
 
+/**
+ * @description Generating random values for deck of cards
+ */
 cardsDistribution = (totalCoupons) => {
     var unique = [9 * 4];
     var number;
@@ -905,6 +1140,9 @@ cardsDistribution = (totalCoupons) => {
     return unique;
 }
 
+/**
+ * @description Generating random values
+ */
 inputRandom = (bound) => {
     var a = Math.floor(Math.random() * bound) + 1
     console.log(a);
@@ -914,6 +1152,7 @@ inputRandom = (bound) => {
 
 
 /**
+ * @description Sorting to cards 
  * @param deck is the array where all the player cards are stored in random order
  * @return the cards of each player in ascending order 
  */
@@ -981,6 +1220,7 @@ exports.sort = (deck) => {
 }
 
 /**
+ * @description Sorting via bubble sort
  * @param array
  * @return sorted array
  */
@@ -997,6 +1237,11 @@ bubbleSort = (array) => {
     return array;
 }
 
+/**
+ * @description Writing array of object in a json file
+ * @param {*} fileName 
+ * @param {*} array 
+ */
 exports.write = (fileName, array) => {
     var json = JSON.stringify(array);
     fs.writeFile(fileName, json, function (err) {
@@ -1005,6 +1250,10 @@ exports.write = (fileName, array) => {
     });
 }
 
+/**
+ * @description Reading data from the given json file 
+ * @param {*} fileName 
+ */
 exports.read = (fileName) => {
     return JSON.parse(fs.readFileSync(fileName, 'utf8'));
 }

@@ -1,11 +1,15 @@
+/**
+ * Purpose   : Checking if the parethesis are balanced or not via using user defined stack.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 28-07-2018
+ */
 var utility = require('../utility/utility');
 var stack = require('../data_structure/stack_linkedlist');
 var input = utility.userInput();
 input.question('Enter the expression ', (data) => {
-    //console.log(data);
     var c = Array.from(data);
-    //console.log(a);
-    var brackets;
     for (var i = 0; i < c.length; i++) {
         if (c[i] == '(') {
             stack.push(c[i]);

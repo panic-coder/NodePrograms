@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Deque using user defined linked list.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 28-07-2018
+ */
 class Node {
     constructor(data) {
         this.data = data;

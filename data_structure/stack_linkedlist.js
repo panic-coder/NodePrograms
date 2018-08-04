@@ -1,3 +1,11 @@
+/**
+ * Purpose   : Stack using user defined linked list.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 28-07-2018
+ */
+
 var l = require('../data_structure/stack_linkedlist.js');
     
 class Node {

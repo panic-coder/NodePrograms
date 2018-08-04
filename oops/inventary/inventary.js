@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Full object oriented inventary management system.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 30-07-2018
+ */
 var fs = require('fs');
 var Inventary = require('./model.js');
 var data = new Inventary();
@@ -18,6 +25,9 @@ obj.forEach(elements => {
 });
 console.log(array);
 
+/**
+ * @description Menu for inventary
+ */
 menu = () => {
     input.question('1. Insert new products\n2. Edit existing products\n3. Delete \n4. Save \n5. Exit ', (choice) => {
         if (choice == '1') {
@@ -36,7 +46,6 @@ menu = () => {
         } else if (choice == '2') {
             array.forEach(element => {
                 element.toString();
-                //console.log(element);
                 
             });
             input.question('Enter the name of article to edit ', (editName) => {

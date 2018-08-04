@@ -1,12 +1,11 @@
+/**
+ * Purpose   : User defined linked list.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 27-07-2018
+ */
 var Node = require('./node.js');
-//var Node = value.Node();
-
-// class Node {
-// 	constructor(data) {
-// 		this.data = data;
-// 		this.next = null;
-// 	}
-// }
 
 var head;
 exports.add = (fileInt) => {

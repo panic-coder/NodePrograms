@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Model for doctor object.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 01-08-2018
+ */
 module.exports = class Doctor {
     constructor(name, id, specialization, availability, numberOfPatients) {
         this.name = name;

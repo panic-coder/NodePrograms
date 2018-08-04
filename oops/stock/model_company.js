@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Model for person object.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 02-08-2018
+ */
 module.exports = class Company{
     constructor(symbol, pricePerShare, totalShares){
         this.symbol = symbol;

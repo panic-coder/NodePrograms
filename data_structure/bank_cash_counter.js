@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Maintaining bank queue using user defined linked list queue.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 28-07-2018
+ */
 var utility = require('../utility/utility');
 var input = utility.userInput();
 var queue = require('../data_structure/queue_linkedlist');
@@ -10,6 +17,9 @@ input.question('Enter the number of people ', (numberOfPeople) => {
     bankQueue();
 })
 
+/**
+ * @description Performing withdwral and deposit operation
+ */
 bankQueue = () => {
     if (queue.isEmpty()) {
         console.log('End of Queue ');

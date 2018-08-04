@@ -1,15 +1,20 @@
+/**
+ * Purpose   : Reading a json file with inventory details and adding the total values of the elements in the inventory.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 30-07-2018
+ */
 var fs = require('fs');
 var obj = JSON.parse(fs.readFileSync('./json/inventory.json', 'utf8'));
 for(var i=0;i<obj.length;i++){
     console.log(obj[i].price);
 }
-//console.log(Array.isArray(obj));
  
 var totalPrice = 0;
 var totalWeight = 0;
 
 obj.forEach(element => {
-   //console.log(element.name);
    totalPrice = totalPrice + element.price;
    totalWeight = totalWeight + element.weight;
 });

@@ -1,3 +1,10 @@
+/**
+ * Purpose   : Finding percentage of heads or tails after flipping a coin.
+ * 
+ * @author   : Kumar Shubham
+ * @version  : 1.0
+ * @since    : 22-07-2018
+ */
 var utility = require('../utility/utility.js')
 var val;
 var input = utility.userInput();
